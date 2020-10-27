@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="icon">@color/textDark</color>
+    <color name="backIcon">#707679</color>
+    <color name="card">#262F33</color>
+    <color name="textDarkLow">#707679</color>
+    <color name="stroke">#47575f</color>
+    <color name="textDark">#FCFCFC</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="whiteT">#BDBDBD</color>
+</resources>

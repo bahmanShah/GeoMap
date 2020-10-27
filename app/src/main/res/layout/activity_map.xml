@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="org.gladcherry.map.view.map.MapViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootLayout"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.map.NMapActivity">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:id="@+id/mapContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/whiteT"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <com.google.android.material.card.MaterialCardView
+            app:cardElevation="@dimen/m_8"
+            android:id="@+id/materialCardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_8"
+            app:cardBackgroundColor="@color/card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:strokeColor="@color/stroke"
+            app:strokeWidth="0.5dp">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:onClick="@{()->vm.clicked(backSearch.getId())}"
+                android:id="@+id/backSearch"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="2dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/text_16"
+                app:srcCompat="@drawable/icon_back" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="2dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="@dimen/text_16"
+                app:srcCompat="@drawable/icon_voice" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="48dp"
+                android:background="@color/card"
+                android:gravity="center_vertical"
+                android:hint="@string/doSearch"
+                android:padding="@dimen/m_8"
+                android:paddingStart="@dimen/m_16"
+                android:paddingEnd="@dimen/m_16"
+                android:textColor="@color/textDark"
+                android:textSize="@dimen/text_16" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:visibility="@{vm.searchVisibility == true ? 0 : 4}"
+            android:id="@+id/searchTopLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/m_16"
+            android:background="@color/textDarkLow"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+        <androidx.recyclerview.widget.RecyclerView
+            searchList="@{vm.searchList.searchItems}"
+            viewModel="@{vm}"
+            android:visibility="@{vm.searchVisibility == true ? 0 : 4}"
+            android:id="@+id/searchRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card"
+            android:paddingTop="90dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
