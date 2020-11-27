@@ -65,7 +65,7 @@ class MapViewModel(private val repository: MapRepository) : ViewModel(), Lifecyc
                     Log.d(M_TAG,_searchList.value.toString())
                 }
             } catch (exception: Exception) {
-
+                Log.d(M_TAG,"exception:$exception")
             }
         }
     }
